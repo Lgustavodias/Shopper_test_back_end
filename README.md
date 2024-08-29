@@ -9,7 +9,7 @@ Neste "read me" você vai encontrar os passos para rodar o app e algumas regras 
 
 ### Ferramentas utilizadas:
 
-- Nodejs (mínimo v21) e npm
+- Nodejs (mínimo 20.6) e npm
 - Adonis 6 e typescript
 - Postgresql
 - Docker

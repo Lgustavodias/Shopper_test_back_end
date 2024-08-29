@@ -1,5 +1,5 @@
 version: '3.9'
-
+ 
 services:
   db:
     container_name: '${APP_NAME}-db'
@@ -12,6 +12,6 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
-
+ 
 volumes:
-  storage_db:
+  storage_db: {}

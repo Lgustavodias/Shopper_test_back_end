@@ -17,7 +17,6 @@ export default await Env.create(new URL('../', import.meta.url), {
   APP_KEY: Env.schema.string(),
   HOST: Env.schema.string({ format: 'host' }),
   LOG_LEVEL: Env.schema.string(),
-  SENDGRID_API_KEY: Env.schema.string(),
 
   /*
     |----------------------------------------------------------
@@ -29,7 +28,4 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.string.optional(),
   DB_DATABASE: Env.schema.string(),
-
-  ASAAS_API_KEY: Env.schema.string(),
-  ASAAS_API_URL: Env.schema.string(),
 })
