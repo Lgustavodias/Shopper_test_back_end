@@ -1,28 +1,21 @@
 import { defineConfig } from '@adonisjs/auth'
-import { InferAuthEvents, Authenticators } from '@adonisjs/auth/types'
-import { tokensGuard, tokensUserProvider } from '@adonisjs/auth/access_tokens'
+import { Authenticators, GuardFactory, InferAuthEvents } from '@adonisjs/auth/types'
 
+// Configuração do auth sem guards
 const authConfig = defineConfig({
-  default: 'api',
-  guards: {
-    api: tokensGuard({
-      provider: tokensUserProvider({
-        model: () => import('#models/user'),
-        tokens: 'authTokens',
-      }),
-    }),
-  },
+  default: 'api', // Defina um valor padrão apropriado, como 'api' ou outro valor aceitável
+  guards: {} as Record<string, GuardFactory>, // Usando um Record vazio como um tipo vazio para guards
 })
 
 export default authConfig
 
 /**
- * Inferring types from the configured auth
- * guards.
+ * Inferindo tipos dos guards de autenticação configurados.
  */
 declare module '@adonisjs/auth/types' {
-  interface Authenticators extends InferAuthenticators<typeof authConfig> {}
+  interface Authenticators extends Record<string, GuardFactory> {}
 }
+
 declare module '@adonisjs/core/types' {
   interface EventsList extends InferAuthEvents<Authenticators> {}
 }

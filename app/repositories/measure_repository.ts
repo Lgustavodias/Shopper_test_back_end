@@ -8,16 +8,13 @@ export default class MeasureRepository {
   }
 
   async validateMeasure(data: MeasureDataValidationDto): Promise<void> {
-    const month = data.measure_datetime.getMonth() + 1 // JavaScript months are 0-based
-    const year = data.measure_datetime.getFullYear()
+    // const month = data.measure_datetime.getMonth() + 1 // JavaScript months are 0-based
+    // const year = data.measure_datetime.getFullYear()
 
     const validationCustomer = await Measure.query()
       .where('customer_code', data.customer_code)
       .andWhere('measure_type', data.measure_type)
-      .andWhereRaw(
-        'EXTRACT(MONTH FROM measure_datetime) = ? AND EXTRACT(YEAR FROM measure_datetime) = ?',
-        [month, year]
-      )
+
     if (validationCustomer) {
       throw new Error('já existe')
     }
