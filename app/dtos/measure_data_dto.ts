@@ -1,6 +1,13 @@
+import { DateTime } from 'luxon'
+
 export default interface MeasureDataDto {
-  image: string
-  customer_code: string
-  measure_datetime: Date
-  measure_type: string
+  measureType: string
+  hasConfirmed: boolean
+  imageUrl: string
+  customerCode: string
+  measureDatetime: DateTime
+  measureValue: number
+  createdAt: DateTime
+  updatedAt: DateTime
+  id: string
 }

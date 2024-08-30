@@ -1,12 +1,14 @@
 import { inject } from '@adonisjs/core'
-import MeasureDataDto from '../../dtos/measure_data_dto.js'
+import MeasureDataCreateDto from '../../dtos/measure_data_create_dto.js'
+import MeasureRepository from '../../repositories/measure_repository.js'
 
 @inject()
 export default class MeasureUploadUseCase {
-  constructor() {}
+  constructor(protected readonly measureRepository: MeasureRepository) {}
 
-  async run(data: MeasureDataDto): Promise<any> {
-    console.log(data)
-    return data
+  async run(data: MeasureDataCreateDto, image: string): Promise<any> {
+    console.log(image)
+    const measure = await this.measureRepository.create(data)
+    return measure
   }
 }

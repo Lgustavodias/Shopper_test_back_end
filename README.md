@@ -1,11 +1,6 @@
 # README
 
-### Aviso
-
-- Os serviços de http ainda não foram testados
-- O serviço file não funciona. A lib necessária ainda não foi lançada para adonis 6
-
-Neste "read me" você vai encontrar os passos para rodar o app e algumas regras e indicações para o desenvolvimento
+Neste "Readme" você vai encontrar os passos para rodar o app e algumas regras e indicações para o desenvolvimento
 
 ### Ferramentas utilizadas:
 
@@ -17,11 +12,11 @@ Neste "read me" você vai encontrar os passos para rodar o app e algumas regras 
 ### Como rodar o projeto?
 
 - Clone o repositório para sua máquina
-- Crie um arquivo .env na raiz do projeto e pegue as variáveis de ambiente de desenvolvimento no discord ou com algum backend
+- Crie um arquivo .env na raiz do projeto
 - Rode "npm install" para instalar as dependências
 - Rode "docker compose up -d" para subir o container do banco de dados (necessário ter o docker instalado)
 - Rode "npm run dev" para iniciar a aplicação
-- Para testar as rotas pegue o arquivo do insomnia no discord ou com algum dev
+- Para testar as rotas pegue o arquivo do insomnia que está na pastaraiz do projeto
 
 ### Estrutura do projeto
 
@@ -37,7 +32,7 @@ Neste "read me" você vai encontrar os passos para rodar o app e algumas regras 
 
 ### Observações sobre a estrutura
 
-- Apenas Repositories e Middlewares podem ler dados do banco de dados por meio das Models
+- Apenas Repositories podem ler dados do banco de dados por meio das Models
 - Apenas Repositories podem alterar ou criar dados no banco de dados por meio das Models
 - Validators e Dtos não devem possuir dados desnecessários
 - Repositories e UseCases são serviços e podem ser chamados pelos Controllers

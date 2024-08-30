@@ -9,8 +9,8 @@ export default class MeasureController {
 
   async upload({ request, response }: HttpContext) {
     const data = request.all()
-    const measureData = await measureValidatorUpload.validate(data)
-    const measureUpload = await this.measureUploadeUseCase.run(measureData)
+    const { image, ...measureData } = await measureValidatorUpload.validate(data)
+    const measureUpload = await this.measureUploadeUseCase.run(measureData, image)
     return response.ok(measureUpload)
   }
 }

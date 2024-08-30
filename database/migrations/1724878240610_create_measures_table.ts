@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.uuid('id')
       table.string('measure_type')
       table.boolean('has_confirmed')
       table.string('image_url')
