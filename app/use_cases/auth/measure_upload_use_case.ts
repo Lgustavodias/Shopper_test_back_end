@@ -8,6 +8,12 @@ export default class MeasureUploadUseCase {
 
   async run(data: MeasureDataCreateDto, image: string): Promise<any> {
     console.log(image)
+    const measureDataValidationDto = {
+      customer_code: data.customer_code,
+      measure_datetime: data.measure_datetime,
+      measure_type: data.measure_type,
+    }
+    await this.measureRepository.validateMeasure(measureDataValidationDto)
     const measure = await this.measureRepository.create(data)
     return measure
   }
