@@ -2,6 +2,7 @@ import Measure from '#models/measure'
 import { DateTime } from 'luxon'
 import MeasureDataCreateDto from '../dtos/measure_data_create_dto.js'
 import MeasureDataValidationDto from '../dtos/measure_data_validation_dto.js'
+import MeasureConfirmDto from '../dtos/measure_confirm_dto.js'
 
 export default class MeasureRepository {
   async create(data: MeasureDataCreateDto): Promise<any> {
@@ -20,5 +21,28 @@ export default class MeasureRepository {
     if (validationCustomer) {
       return 'Leitura do mês já realizada'
     }
+  }
+
+  async confirm(data: MeasureConfirmDto): Promise<any> {
+    const measure = await Measure.query().where('id', data.measure_uuid).first()
+    if (measure) {
+      if (measure.hasConfirmed === true) {
+        return 'isConfirmed'
+      } else {
+        if (measure.measureValue === data.confirmed_value) {
+          measure.merge({ hasConfirmed: true }).save()
+          return 'confirmed'
+        } else {
+          return 'notValue'
+        }
+      }
+    } else {
+      return 'notExists'
+    }
+  }
+
+  async index(customer_code: string): Promise<Measure[]> {
+    const measure = await Measure.query().where('customer_code', customer_code)
+    return measure
   }
 }
