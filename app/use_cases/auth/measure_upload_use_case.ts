@@ -11,14 +11,19 @@ export default class MeasureUploadUseCase {
   ) {}
 
   async run(data: MeasureDataCreateDto, image: string): Promise<any> {
-    const imgUrl = await this.geminiService.uploadAndGenerateContent(image)
-    console.log(imgUrl)
     const measureDataValidationDto = {
       customer_code: data.customer_code,
       measure_datetime: data.measure_datetime,
       measure_type: data.measure_type,
     }
-    await this.measureRepository.validateMeasure(measureDataValidationDto)
+
+    const validate = await this.measureRepository.validateMeasure(measureDataValidationDto)
+    if (validate) {
+      return 'error'
+    }
+    const GeminiReturn = await this.geminiService.uploadAndGenerateContent(image)
+    const numberMatch = GeminiReturn.match(/\d+/)?.[0] ?? 'No match found'
+    data.measure_value = numberMatch
     const measure = await this.measureRepository.create(data)
     return measure
   }

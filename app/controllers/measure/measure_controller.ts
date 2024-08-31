@@ -11,6 +11,14 @@ export default class MeasureController {
     const data = request.all()
     const { image, ...measureData } = await measureValidatorUpload.validate(data)
     const measureUpload = await this.measureUploadeUseCase.run(measureData, image)
-    return response.ok(measureUpload)
+    if (measureUpload === 'error') {
+      return response.conflict('leitura do mês já realizada')
+    }
+    const dataReturn = {
+      image_url: measureUpload.image_url,
+      measure_value: measureUpload.measure_value,
+      measure_uuid: measureUpload.id,
+    }
+    return response.ok(dataReturn)
   }
 }

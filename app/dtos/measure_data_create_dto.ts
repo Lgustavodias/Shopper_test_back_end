@@ -4,4 +4,5 @@ export default interface MeasureDataCreateDto {
   measure_datetime: Date
   measure_type: string
   image?: string
+  measure_value?: number
 }

@@ -4,6 +4,6 @@ const MeasureController = () => import('#controllers/measure/measure_controller'
 
 router
   .group(() => {
-    router.post('measure/upload', [MeasureController, 'upload'])
+    router.post('upload', [MeasureController, 'upload'])
   })
   .prefix('/development')
