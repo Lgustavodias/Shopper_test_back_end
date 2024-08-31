@@ -4,7 +4,7 @@ import MeasureDataCreateDto from '../dtos/measure_data_create_dto.js'
 import MeasureDataValidationDto from '../dtos/measure_data_validation_dto.js'
 
 export default class MeasureRepository {
-  async create(data: MeasureDataCreateDto): Promise<Measure> {
+  async create(data: MeasureDataCreateDto): Promise<any> {
     return await Measure.create(data)
   }
 

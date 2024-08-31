@@ -54,8 +54,8 @@ export default class GeminiService {
 
       // Remove o arquivo temporário após o uso
       fs.unlinkSync(tempFilePath)
-
-      return result.response.text()
+      const resultReturn = { result: result.response.text(), imgUrl: uploadResponse.file.uri }
+      return resultReturn
     } catch (error) {
       console.error('Error during the process:', error.message)
       console.error('Stack Trace:', error.stack)

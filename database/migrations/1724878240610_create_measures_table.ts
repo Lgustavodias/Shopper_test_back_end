@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id')
       table.string('measure_type')
-      table.boolean('has_confirmed')
+      table.boolean('has_confirmed').defaultTo(false)
       table.string('image_url')
       table.dateTime('measure_datetime')
       table.string('customer_code')

@@ -16,14 +16,14 @@ export default class MeasureUploadUseCase {
       measure_datetime: data.measure_datetime,
       measure_type: data.measure_type,
     }
-
     const validate = await this.measureRepository.validateMeasure(measureDataValidationDto)
     if (validate) {
       return 'error'
     }
     const GeminiReturn = await this.geminiService.uploadAndGenerateContent(image)
-    const numberMatch = GeminiReturn.match(/\d+/)?.[0] ?? 'No match found'
+    const numberMatch = GeminiReturn.result.match(/\d+/)?.[0] ?? 'No match found'
     data.measure_value = numberMatch
+    data.imageUrl = GeminiReturn.imgUrl
     const measure = await this.measureRepository.create(data)
     return measure
   }

@@ -15,10 +15,11 @@ export default class MeasureController {
       return response.conflict('leitura do mês já realizada')
     }
     const dataReturn = {
-      image_url: measureUpload.image_url,
-      measure_value: measureUpload.measure_value,
+      image_url: measureUpload.imageUrl,
+      measure_value: measureUpload.measureValue,
       measure_uuid: measureUpload.id,
     }
+    console.log(measureUpload)
     return response.ok(dataReturn)
   }
 }
