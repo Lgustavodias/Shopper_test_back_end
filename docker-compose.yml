@@ -1,18 +1,35 @@
-version: '3.9'
- 
+version: '3.8'
+
 services:
-  db:
-    container_name: 'shopper_test_backend'
-    image: postgres
-    volumes:
-      - storage_db:/var/lib/postgres/data
-    ports:
-      - 5432:5432
+  postgres:
+    image: postgres:15
+    container_name: shopper_test_backend
     environment:
+      POSTGRES_DB: shopperDB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: shopperDB
-      
- 
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adonis_app
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 123456
+      DB_NAME: shopperDB
+    volumes:
+      - .:/usr/src/app
+
 volumes:
-  storage_db: {}
+  postgres_data:

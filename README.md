@@ -13,9 +13,7 @@ Neste "Readme" você vai encontrar os passos para rodar o app e algumas regras e
 
 - Clone o repositório para sua máquina
 - Crie um arquivo .env na raiz do projeto
-- Rode "npm install" para instalar as dependências
-- Rode "docker compose up -d" para subir o container do banco de dados (necessário ter o docker instalado)
-- Rode "npm run dev" para iniciar a aplicação
+- Rode o docker-compose up --build (necessário ter o docker instalado) para iniciar a aplicação
 - Para testar as rotas pegue o arquivo do insomnia que está na pasta raiz do projeto(Shopper_test_back_end_insomnia)
 
 ### Estrutura do projeto
